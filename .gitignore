@@ -1,4 +1,5 @@
 venv/
+.vscode/
 
 agentes/__pycache__/
 agentes/migrations/__pycache__/
