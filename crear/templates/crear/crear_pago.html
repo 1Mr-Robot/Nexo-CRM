@@ -74,37 +74,135 @@
     <div class="card-body">
         <h2 class="card-title">Datos de pago</h2>
         <div class="mt-2">
-            <form method="post">
+            <form method="post" id="polizaForm">
                 {% csrf_token %}
-                <label for="id">ID:</label>
-                <input type="text" name="id" required>
-            
-                <label for="prima">Prima base (sin comisión):</label>
-                <input type="number" step="0.01" name="prima" required>
-            
-                <label for="formapagoid">Forma de pago:</label>
-                <select name="formapagoid">
-                    {% for forma in formasPago %}
-                        <option value="{{ forma.id }}">{{ forma.forma }}</option>
-                    {% endfor %}
-                </select>
-            
-                <label for="metodopagoid">Método de pago:</label>
-                <select name="metodopagoid">
-                    {% for metodo in metodosPago %}
-                        <option value="{{ metodo.id }}">{{ metodo.metodo }}</option>
-                    {% endfor %}
-                </select>
-            
-                <label for="fechafin">Fecha de fin:</label>
-                <input type="date" name="fechafin" required>
-            
-                <p>Comisión actual: {{ comision }}%</p>
-            
-                <button type="submit">Crear Póliza</button>
+                <div class="form-group">
+                    <label for="id">ID:</label>
+                    <input type="text" id="polizaId" name="id" required readonly class="form-control">
+                    <small class="form-text text-muted">ID generado automáticamente</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="prima">Prima base (sin comisión):</label>
+                    <input type="number" step="0.01" name="prima" required class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="formapagoid">Forma de pago:</label>
+                    <select name="formapagoid" class="form-control">
+                        {% for forma in formasPago %}
+                            <option value="{{ forma.id }}">{{ forma.forma }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="metodopagoid">Método de pago:</label>
+                    <select name="metodopagoid" class="form-control">
+                        {% for metodo in metodosPago %}
+                            <option value="{{ metodo.id }}">{{ metodo.metodo }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fechafin">Fecha de fin:</label>
+                    <input type="date" name="fechafin" required class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <p><strong>Comisión actual: {{ comision }}%</strong></p>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Crear Póliza</button>
             </form>
-            
         </div>
     </div>
 </div>
+
+<script>
+    // Función para generar un ID aleatorio de 10 caracteres
+    function generarIdAleatorio() {
+        const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let id = '';
+        
+        for (let i = 0; i < 10; i++) {
+            const indiceAleatorio = Math.floor(Math.random() * caracteres.length);
+            id += caracteres.charAt(indiceAleatorio);
+        }
+        
+        return id;
+    }
+
+    // Generar ID aleatorio cuando se cargue la página
+    document.addEventListener('DOMContentLoaded', function() {
+        const idInput = document.getElementById('polizaId');
+        idInput.value = generarIdAleatorio();
+    });
+
+    // Opcional: Permitir regenerar el ID si se hace clic en el campo
+    document.getElementById('polizaId').addEventListener('click', function() {
+        if(confirm('¿Desea generar un nuevo ID?')) {
+            this.value = generarIdAleatorio();
+        }
+    });
+</script>
+
+<style>
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .form-control {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    
+    .form-control:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+    
+    .form-text {
+        display: block;
+        margin-top: 0.25rem;
+    }
+    
+    .btn-primary {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        cursor: pointer;
+    }
+    
+    .btn-primary:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+    
+    #polizaId {
+        background-color: #f8f9fa;
+        cursor: pointer;
+    }
+    
+    #polizaId:hover {
+        background-color: #e9ecef;
+    }
+</style>
 {% endblock %}
