@@ -1,6 +1,2 @@
-# Carpetas de entornos virtuales
 venv/
-.env/
 
-# Archivos temporales de Python
-__pycache__/
