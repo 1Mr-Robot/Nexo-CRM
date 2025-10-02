@@ -4,16 +4,23 @@ from django.contrib.auth import login, logout, authenticate
 
 def iniciar_sesion(request):
     if request.method == 'GET':
-        return render(request, "core/login.html", {'form': AuthenticationForm})
+        return render(request, "core/login.html", {'form': AuthenticationForm()})
     else:
-        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        
         if user is None:
             return render(request, "core/login.html", {
-                'form': AuthenticationForm,
+                'form': AuthenticationForm(),
                 'error': 'Usuario o contraseña incorrectos'
             })
+
+        login(request, user)
+
+        if user.is_staff:
+            return redirect('/admin/')
         else:
-            login(request, user)
             return redirect('polizas')
 
 def cerrar_sesion(request):

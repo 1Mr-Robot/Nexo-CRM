@@ -694,6 +694,14 @@
                     <span>Reportes</span>
                 </a>
             </li>
+            {% if user.is_staff %}
+                <li>
+                    <a class="{% if request.path == '/admin/' or request.path|slice:':6' == '/admin' %}activo{% endif %}" href="{% url 'admin:index' %}">
+                        <i class="bi bi-shield-lock"></i>
+                        <span>Panel de administración</span>
+                    </a>
+                </li>
+            {% endif %}
         </ul>
         <a class="crear {% if request.path == '/crear/' or request.path|slice:':7' == '/crear' %}activo{% endif %}" href="{% url 'crear' %}">
             <i class="bi bi-file-earmark-plus-fill"></i>
