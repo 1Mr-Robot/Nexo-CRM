@@ -1,0 +1,50 @@
+:root {
+    --primary-color: #6496e6;
+    --secondary-color: #3c64b4;
+}
+
+footer {
+    background: linear-gradient(120deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 30px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Título h1 dentro del footer */
+footer h1 {
+    font-size: 26px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+/* Subtítulo */
+footer #subtitulo {
+    font-style: italic;
+    opacity: 0.9;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+/* Segundo div con texto */
+footer #segundo {
+    text-align: right;
+    max-width: 400px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+@media (max-width: 576px) {
+    footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    footer #segundo {
+        text-align: center;
+    }
+}
+
