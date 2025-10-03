@@ -55,13 +55,10 @@
         }
 
         .logo-container {
-        background: linear-gradient(120deg, var(--primary-color) 0%, var(--secondary-color) 100%);
         padding: 30px 20px;
-        border-radius: 0 0 12px 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         /* 🔴 Quitamos margen */
         margin: 0;
     }
@@ -263,7 +260,22 @@
             font-weight: 500;
         }
 
-        .btn-primary:hover {
+        .btn-secondary {
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            height: 44px;
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -346,10 +358,6 @@
             font-weight: 600;
             border: none;
             font-family: 'Poppins', sans-serif;
-        }
-        
-        .card-body {
-            padding: 25px;
         }
         
         .table {
