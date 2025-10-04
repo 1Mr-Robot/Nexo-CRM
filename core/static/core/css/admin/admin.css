@@ -166,7 +166,7 @@ body {
     width: 100% !important;
 }
 
-.module:hover {
+.module:hover:not(.filtered) {
     transform: translateY(-1px) !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12) !important;
 }
@@ -200,7 +200,6 @@ body {
 }
 
 .module th {
-    background: #f8fafc !important;
     font-weight: 600 !important;
     color: var(--dark-text) !important;
     font-size: 13px !important;
@@ -213,17 +212,23 @@ body {
     /* MÁS PEQUEÑO */
 }
 
+.module th, .module td {
+    background-color: #f8fafc;
+}
+
 .module tr:last-child td {
     border-bottom: none !important;
 }
 
-.module tr:hover td {
-    background: #f8fafc !important;
+.module tr:hover td, .module tr:hover th {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* ================== BOTONES MÁS COMPACTOS ================== */
 .addlink,
-.changelink {
+.changelink,
+#toolbar form input[type="submit"],
+#changelist .actions .button {
     display: inline-flex !important;
     align-items: center !important;
     gap: 6px !important;
@@ -249,16 +254,16 @@ body {
     box-shadow: 0 3px 8px rgba(16, 185, 129, 0.3) !important;
 }
 
-.changelink {
+.changelink, #toolbar form input[type="submit"], #changelist .actions .button {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
     color: white !important;
 }
 
-.changelink a, .addlink a {
+.changelink a, .addlink a, #toolbar form input[type="submit"] {
     color: white !important;
 }
 
-.changelink:hover {
+.changelink:hover, #toolbar form input[type="submit"]:hover, #changelist .actions .button:hover {
     background: linear-gradient(135deg, var(--secondary-color) 0%, #1d4ed8 100%) !important;
     transform: translateY(-1px) !important;
     box-shadow: 0 3px 8px rgba(100, 150, 230, 0.3) !important;
