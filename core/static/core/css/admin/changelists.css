@@ -100,11 +100,6 @@
     border-radius: 10px;
 }
 
-#toolbar #searchbar:focus, #changelist .actions select:focus, #nav-filter:focus {
-    border-color: var(--primary-color);
-    outline: none;  
-}
-
 #toolbar form input[type="submit"], #changelist .actions .button {
     padding: 2px 8px;
     margin: 0;

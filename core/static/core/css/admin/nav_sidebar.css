@@ -143,3 +143,7 @@
 #nav-sidebar table {
     width: 100%;
 }
+
+#nav-sidebar tbody tr:not(:last-child) {
+    border-bottom: 2px solid var(--hairline-color);
+}

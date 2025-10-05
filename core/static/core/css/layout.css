@@ -65,6 +65,10 @@ footer,
     background-color: var(--light-bg);
 }
 
+#tabla_reporte_polizas {
+    font-size: 0.9rem;
+}
+
 /* ==========================================
                 Componentes UI
 ========================================== */
