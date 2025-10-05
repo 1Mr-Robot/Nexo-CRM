@@ -20,7 +20,7 @@ class Cliente(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True, verbose_name='ID')
     nombre = models.CharField(max_length=50, verbose_name='Nombre')
     appaterno = models.CharField(db_column='apPaterno', max_length=50, verbose_name='Apellido paterno')  # Field name made lowercase.
-    apmaterno = models.CharField(db_column='apMaterno', max_length=50, verbose_name='Apeliido materno')  # Field name made lowercase.
+    apmaterno = models.CharField(db_column='apMaterno', max_length=50, verbose_name='Apellido materno')  # Field name made lowercase.
     fechanacimiento = models.DateField(db_column='fechaNacimiento', verbose_name='Fecha de nacimiento')  # Field name made lowercase.
     rfc = models.CharField(db_column='RFC', max_length=13, verbose_name='RFC')  # Field name made lowercase.
     curp = models.CharField(db_column='CURP', max_length=18, verbose_name='CURP')  # Field name made lowercase.

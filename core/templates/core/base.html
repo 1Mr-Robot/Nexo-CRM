@@ -80,11 +80,11 @@
     </nav>
     
     <!-- Contenido Principal -->
-    <div id="principal">
+    <div id="principal" class="position-relative">
         <!-- NavBar - CORREGIDO -->
         <div id="superior">
             <!-- Barra de búsqueda centrada -->
-            {% if request.path == '/polizas/' or request.path == '/clientes/' or request.path == '/agentes/' or request.path == '/aseguradoras/' or request.path == '/reportes/' or request.path|slice:':8' == '/polizas' or request.path|slice:':9' == '/clientes' or request.path|slice:':9' == '/agentes' or request.path|slice:':14' == '/aseguradoras' or request.path|slice:':9' == '/reportes' %}
+            {% if request.path == '/polizas/' or request.path == '/clientes/' or request.path == '/agentes/' or request.path == '/aseguradoras/' or request.path == '/reportes/polizas/' or request.path == '/reportes/agentes_aseguradoras/' or request.path == '/reportes/aseguradoras_tipos/'%}
             <div id="searchbar">
                 <form class="custom-form" method="get">
                     <button class="custom-form__button" type="submit">
@@ -106,7 +106,7 @@
             {% endif %}
             
             <!-- Perfil de usuario a la derecha -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary position-absolute top-50 end-0 translate-middle-y me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <img src="{% static 'core/images/profile-default.png' %}" alt="Foto de perfil">
                 <span class="user-name">{{ request.user.get_full_name }}</span>
             </button>

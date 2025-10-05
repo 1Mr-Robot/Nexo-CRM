@@ -5,18 +5,25 @@
 {% block title %}Cliente #{{ cliente.id }}{% endblock %}
 
 {% block content %}
-    <h1>Cliente #{{ cliente.id }}</h1>
     {% if modo == "editar" %}
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <a class="btn btn-primary" href="{% url 'clientes' %}">Cancelar</a>
-            <button class="btn btn-primary">Actualizar</button>
-        </form>
-        {% if error %}
-            <p class="text-danger">{{ error }}</p>
-        {% endif %}
+    <div class="form-container">
+        <div class="container-form">
+            <h1>Cliente #{{ cliente.id }}</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="form-buttons">
+                    <a class="btn btn-primary" href="{% url 'clientes' %}">Cancelar</a>
+                    <button class="btn btn-primary">Actualizar</button>
+                </div>
+            </form>
+            {% if error %}
+                <p class="text-danger">{{ error }}</p>
+            {% endif %}
+            </div>
+    </div>
     {% else %}
+        <h1>Cliente #{{ cliente.id }}</h1>
         <div id="contenedorDatos">
             <div>
                 <h2>Datos generales:</h2>

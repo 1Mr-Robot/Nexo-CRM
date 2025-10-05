@@ -7,24 +7,34 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def polizas(request):
     query = request.GET.get('q')
+    polizas = Poliza.objects.select_related(
+        'clienteid', 'agenteid', 'aseguradoraid', 'tipopolizaid', 'formapagoid', 'metodopagoid'
+    )
+
     if query:
-        polizas = Poliza.objects.select_related(
-            'clienteid', 'agenteid', 'aseguradoraid', 'tipopolizaid', 'formapagoid', 'metodopagoid'
-        ).filter(
-            Q(id__icontains=query) |
-            Q(clienteid__nombre__icontains=query) |
-            Q(clienteid__appaterno__icontains=query) |
-            Q(clienteid__apmaterno__icontains=query) |
-            Q(agenteid__nombre__icontains=query) |
-            Q(agenteid__apellidopaterno__icontains=query) |
-            Q(agenteid__apellidomaterno__icontains=query) |
-            Q(aseguradoraid__nombre__icontains=query) |
-            Q(tipopolizaid__nombre__icontains=query) |
-            Q(formapagoid__forma__icontains=query) |
-            Q(metodopagoid__metodo__icontains=query)
-        ).order_by('aseguradoraid__nombre', 'agenteid__nombre', 'agenteid__apellidopaterno', 'agenteid__apellidomaterno', 'clienteid__nombre', 'clienteid__appaterno', 'clienteid__apmaterno')
+        terms = query.split()  # ["Juan", "Pérez"]
+        q_objects = Q()  # Contenedor de OR
+        for term in terms:
+            q_objects |= Q(clienteid__nombre__icontains=term)
+            q_objects |= Q(clienteid__appaterno__icontains=term)
+            q_objects |= Q(clienteid__apmaterno__icontains=term)
+            q_objects |= Q(agenteid__nombre__icontains=term)
+            q_objects |= Q(agenteid__apellidopaterno__icontains=term)
+            q_objects |= Q(agenteid__apellidomaterno__icontains=term)
+            q_objects |= Q(aseguradoraid__nombre__icontains=term)
+            q_objects |= Q(tipopolizaid__nombre__icontains=term)
+            q_objects |= Q(formapagoid__forma__icontains=term)
+            q_objects |= Q(metodopagoid__metodo__icontains=term)
+        polizas = polizas.filter(q_objects).order_by(
+            'aseguradoraid__nombre', 'agenteid__nombre', 'agenteid__apellidopaterno',
+            'agenteid__apellidomaterno', 'clienteid__nombre', 'clienteid__appaterno', 'clienteid__apmaterno'
+        )
     else:
-        polizas = Poliza.objects.all().order_by('aseguradoraid__nombre', 'agenteid__nombre', 'agenteid__apellidopaterno', 'agenteid__apellidomaterno', 'clienteid__nombre', 'clienteid__appaterno', 'clienteid__apmaterno')
+        polizas = polizas.all().order_by(
+            'aseguradoraid__nombre', 'agenteid__nombre', 'agenteid__apellidopaterno',
+            'agenteid__apellidomaterno', 'clienteid__nombre', 'clienteid__appaterno', 'clienteid__apmaterno'
+        )
+
     return render(request, "polizas/polizas.html", {'polizas':polizas})
 
 @login_required

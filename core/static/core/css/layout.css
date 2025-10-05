@@ -65,6 +65,11 @@ footer,
     background-color: var(--light-bg);
 }
 
+#contenedorDatos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
 #tabla_reporte_polizas {
     font-size: 0.9rem;
 }
@@ -415,4 +420,126 @@ footer,
     footer #segundo {
         text-align: center;
     }
+}
+
+
+/* ==========================================
+                Formulario 
+========================================== */
+
+.form-container {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.container-form {
+    width: 600px;
+}
+
+form:not(.custom-form) {
+    max-width: 600px;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Estilo para los párrafos que contienen los labels e inputs */
+form:not(.custom-form) p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+/* Estilo de los labels */
+form:not(.custom-form) label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333333;
+}
+
+/* Estilo de los inputs y select */
+form:not(.custom-form) input[type="text"],
+form:not(.custom-form) input[type="date"],
+form:not(.custom-form) input[type="number"],
+form:not(.custom-form) select {
+    padding: 12px 15px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Efecto al hacer focus */
+form:not(.custom-form) input[type="text"]:focus,
+form:not(.custom-form) input[type="date"]:focus,
+form:not(.custom-form) input[type="number"]:focus,
+form:not(.custom-form) select:focus {
+    border-color: #4A90E2;
+    /* azul */
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+}
+
+/* Botón de submit */
+form:not(.custom-form) .btn-crear {
+    width: 100%;
+    padding: 15px;
+    background-color: #4A90E2;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Efecto hover en el botón */
+form:not(.custom-form) .btn-crear:hover {
+    background-color: #357ABD;
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+}
+
+/* Contenedor de botones */
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* Botón de cancelar */
+.btn-cancelar {
+    padding: 12px 20px;
+    background-color: #e0e0e0;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    text-decoration: none;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-cancelar:hover {
+    background-color: #c5c5c5;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón de actualizar */
+.btn-actualizar {
+    padding: 12px 20px;
+    background-color: #4A90E2;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-actualizar:hover {
+    background-color: #357ABD;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
 }

@@ -7,22 +7,29 @@ from agentes.models import Agente
 from aseguradoras.models import Aseguradora
 from polizas.models import Tipopoliza, Formapago, Metodopago, Poliza
 from core.models import Detalleastp
+from django.db.models import Q
 
 @login_required
 def crear(request):
     query = request.GET.get('q')
+    clientes = Cliente.objects.all()
+
+    # 🔹 Búsqueda flexible por nombre, apellidos o ID
     if query:
-        clientes = Cliente.objects.filter(
-            id__icontains=query
-        ) | Cliente.objects.filter(
-            nombre__icontains=query
-        ) | Cliente.objects.filter(
-            appaterno__icontains=query
-        ) | Cliente.objects.filter(
-            apmaterno__icontains=query
-        ).order_by('nombre', 'appaterno', 'apmaterno')
+        terms = query.split()  # Ejemplo: "Juan Pérez" → ["Juan", "Pérez"]
+        q_objects = Q()
+
+        for term in terms:
+            q_objects |= Q(id__icontains=term)
+            q_objects |= Q(nombre__icontains=term)
+            q_objects |= Q(appaterno__icontains=term)
+            q_objects |= Q(apmaterno__icontains=term)
+
+        clientes = clientes.filter(q_objects).order_by('nombre', 'appaterno', 'apmaterno')
     else:
-        clientes = Cliente.objects.all().order_by('nombre', 'appaterno', 'apmaterno')
+        clientes = clientes.order_by('nombre', 'appaterno', 'apmaterno')
+
+    # 🔹 Manejo del formulario para crear cliente
     if request.method == 'POST':
         form = ClienteForm(request.POST)
         if form.is_valid():
@@ -30,8 +37,9 @@ def crear(request):
             return redirect('crear_agente', cliente_id=cliente.id)
     else:
         form = ClienteForm()
+
     return render(request, 'crear/crear_cliente.html', {
-        'clientes':clientes,
+        'clientes': clientes,
         'form': form
     })
 
@@ -39,21 +47,26 @@ def crear(request):
 def crear_agente(request, cliente_id):
     cliente = get_object_or_404(Cliente, pk=cliente_id)
     query = request.GET.get('q')
+    agentes = Agente.objects.all()
+
+    # 🔹 Búsqueda flexible por nombre, apellidos o ID
     if query:
-        agentes = Agente.objects.filter(
-            id__icontains=query
-        ) | Agente.objects.filter(
-            nombre__icontains=query
-        ) | Agente.objects.filter(
-            apellidopaterno__icontains=query
-        ) | Agente.objects.filter(
-            apellidomaterno__icontains=query
-        ).order_by('nombre', 'apellidopaterno', 'apellidomaterno')
+        terms = query.split()  # Ejemplo: "Juan Pérez" → ["Juan", "Pérez"]
+        q_objects = Q()
+
+        for term in terms:
+            q_objects |= Q(id__icontains=term)
+            q_objects |= Q(nombre__icontains=term)
+            q_objects |= Q(apellidopaterno__icontains=term)
+            q_objects |= Q(apellidomaterno__icontains=term)
+
+        agentes = agentes.filter(q_objects).order_by('nombre', 'apellidopaterno', 'apellidomaterno')
     else:
-        agentes = Agente.objects.all().order_by('nombre', 'apellidopaterno', 'apellidomaterno')
+        agentes = agentes.order_by('nombre', 'apellidopaterno', 'apellidomaterno')
+
     return render(request, 'crear/crear_agente.html', {
-        'agentes':agentes,
-        'cliente':cliente
+        'agentes': agentes,
+        'cliente': cliente
     })
 
 @login_required
