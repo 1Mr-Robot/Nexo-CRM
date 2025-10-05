@@ -17,7 +17,7 @@
                     </div>
                     <h5 class="card-title">Reporte de Pólizas</h5>
                     <p class="card-text">Genera reportes detallados de todas las pólizas activas, vencidas y próximas a vencer.</p>
-                    <a href="{% url 'reporte_polizas' %}" class="btn btn-primary btn-report">
+                    <a href="{% url 'reporte_polizas' %}" class="btn">
                         <i class="bi bi-eye me-2"></i>Ver Reporte
                     </a>
                 </div>
@@ -32,7 +32,7 @@
                     </div>
                     <h5 class="card-title">Agente y Aseguradora</h5>
                     <p class="card-text">Analiza el desempeño de cada agente por aseguradora y el volumen de pólizas gestionadas.</p>
-                    <a href="{% url 'reporte_AgAs' %}" class="btn btn-primary btn-report">
+                    <a href="{% url 'reporte_AgAs' %}" class="btn">
                         <i class="bi bi-eye me-2"></i>Ver Reporte
                     </a>
                 </div>
@@ -47,7 +47,7 @@
                     </div>
                     <h5 class="card-title">Aseguradora y Tipo de Póliza</h5>
                     <p class="card-text">Consulta estadísticas de pólizas por aseguradora y tipo de cobertura.</p>
-                    <a href="{% url 'reporte_AsTP' %}" class="btn btn-primary btn-report">
+                    <a href="{% url 'reporte_AsTP' %}" class="btn">
                         <i class="bi bi-eye me-2"></i>Ver Reporte
                     </a>
                 </div>
@@ -62,7 +62,11 @@
         border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
-        border-left: 4px solid #4b6cb7;
+    }
+
+    .card-body {
+        position: relative;
+        padding: 20px;
     }
     
     .report-card:hover {
@@ -75,19 +79,22 @@
         color: #4b6cb7;
     }
     
-    .btn-report {
+    .card-body .btn {
         background: linear-gradient(120deg, #4b6cb7, #182848);
         border: none;
         border-radius: 8px;
         padding: 10px 20px;
         font-weight: 500;
         transition: all 0.3s;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
     }
-    
-    .btn-report:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(75, 108, 183, 0.3);
-        background: linear-gradient(120deg, #182848, #4b6cb7);
+
+    .card-body .btn:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
     
     .card-title {
