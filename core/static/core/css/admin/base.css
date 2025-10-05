@@ -1083,7 +1083,6 @@ a.deletelink:focus, a.deletelink:hover {
 .delete-confirmation form .cancel-link {
     display: inline-block;
     vertical-align: middle;
-    height: 0.9375rem;
     line-height: 0.9375rem;
     border-radius: 4px;
     padding: 10px 15px;

@@ -166,7 +166,7 @@ body {
     width: 100% !important;
 }
 
-.module:hover:not(.filtered) {
+.module:hover:not(.filtered):not(.aligned) {
     transform: translateY(-1px) !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12) !important;
 }
@@ -228,7 +228,10 @@ body {
 .addlink,
 .changelink,
 #toolbar form input[type="submit"],
-#changelist .actions .button {
+#changelist .actions .button,
+.submit-row input[type="submit"],
+.deletelink,
+#id_password a {
     display: inline-flex !important;
     align-items: center !important;
     gap: 6px !important;
@@ -243,18 +246,18 @@ body {
     font-family: 'Poppins', sans-serif !important;
 }
 
-.addlink {
+.addlink, .default {
     background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%) !important;
     color: white !important;
 }
 
-.addlink:hover {
+.addlink:hover, .default:hover {
     background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
     transform: translateY(-1px) !important;
     box-shadow: 0 3px 8px rgba(16, 185, 129, 0.3) !important;
 }
 
-.changelink, #toolbar form input[type="submit"], #changelist .actions .button {
+.changelink, #toolbar form input[type="submit"], #changelist .actions .button, .submit-row input[type="submit"]:not(.default), #id_password a  {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
     color: white !important;
 }
@@ -263,7 +266,7 @@ body {
     color: white !important;
 }
 
-.changelink:hover, #toolbar form input[type="submit"]:hover, #changelist .actions .button:hover {
+.changelink:hover, #toolbar form input[type="submit"]:hover, #changelist .actions .button:hover, .submit-row input[type="submit"]:not(.default):hover, #id_password a:hover {
     background: linear-gradient(135deg, var(--secondary-color) 0%, #1d4ed8 100%) !important;
     transform: translateY(-1px) !important;
     box-shadow: 0 3px 8px rgba(100, 150, 230, 0.3) !important;
@@ -413,4 +416,9 @@ body {
         border-left: 2px solid rgb(206, 206, 206) !important;
         margin: 0 !important;
     }
+}
+
+#toolbar #searchbar:focus, #changelist .actions select:focus, #nav-filter:focus, input[type="text"]:focus, input[type="search"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;  
 }
