@@ -412,12 +412,11 @@ span.clearable-file-input label {
 .calendarbox, .clockbox {
     margin: 5px auto;
     font-size: 0.75rem;
-    width: 19em;
     text-align: center;
     background: var(--body-bg);
     color: var(--body-fg);
     border: 1px solid var(--hairline-color);
-    border-radius: 4px;
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     position: relative;

@@ -156,7 +156,7 @@ body {
     width: 100% !important;
 }
 
-.module {
+.module:not(.calendarbox) {
     background: white !important;
     border-radius: 15px !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;

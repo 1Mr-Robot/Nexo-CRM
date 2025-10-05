@@ -52,12 +52,12 @@ class Metodopago(models.Model):
 
 class Poliza(models.Model):
     id = models.CharField(primary_key=True, max_length=15, verbose_name='ID')
-    aseguradoraid = models.ForeignKey('aseguradoras.Aseguradora', models.DO_NOTHING, db_column='aseguradoraID', verbose_name='Aseguradora')  # Field name made lowercase.
-    agenteid = models.ForeignKey('agentes.Agente', models.DO_NOTHING, db_column='agenteID', verbose_name='Agente')  # Field name made lowercase.
-    clienteid = models.ForeignKey('clientes.Cliente', models.DO_NOTHING, db_column='clienteID', verbose_name='Cliente')  # Field name made lowercase.
-    tipopolizaid = models.ForeignKey(Tipopoliza, models.DO_NOTHING, db_column='tipoPolizaID', verbose_name='Tipo de póliza')  # Field name made lowercasea.
-    formapagoid = models.ForeignKey(Formapago, models.DO_NOTHING, db_column='formaPagoID', verbose_name='Forma de pago')  # Field name made lowercase.
-    metodopagoid = models.ForeignKey(Metodopago, models.DO_NOTHING, db_column='metodoPagoID', verbose_name='Método de pago')  # Field name made lowercase.
+    aseguradoraid = models.ForeignKey('aseguradoras.Aseguradora', on_delete=models.PROTECT, db_column='aseguradoraID', verbose_name='Aseguradora')  # Field name made lowercase.
+    agenteid = models.ForeignKey('agentes.Agente', on_delete=models.PROTECT, db_column='agenteID', verbose_name='Agente')  # Field name made lowercase.
+    clienteid = models.ForeignKey('clientes.Cliente', on_delete=models.PROTECT, db_column='clienteID', verbose_name='Cliente')  # Field name made lowercase.
+    tipopolizaid = models.ForeignKey(Tipopoliza, on_delete=models.PROTECT, db_column='tipoPolizaID', verbose_name='Tipo de póliza')  # Field name made lowercasea.
+    formapagoid = models.ForeignKey(Formapago, on_delete=models.PROTECT, db_column='formaPagoID', verbose_name='Forma de pago')  # Field name made lowercase.
+    metodopagoid = models.ForeignKey(Metodopago, on_delete=models.PROTECT, db_column='metodoPagoID', verbose_name='Método de pago')  # Field name made lowercase.
     prima = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Prima')
     fechainicio = models.DateTimeField(db_column='fechaInicio', auto_now_add=True, verbose_name='Fehca de inicio')  # Field name made lowercase.
     fechafin = models.DateField(db_column='fechaFin', verbose_name='Fecha de fin')  # Field name made lowercase.

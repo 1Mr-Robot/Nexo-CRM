@@ -24,7 +24,7 @@ class Cliente(models.Model):
     fechanacimiento = models.DateField(db_column='fechaNacimiento', verbose_name='Fecha de nacimiento')  # Field name made lowercase.
     rfc = models.CharField(db_column='RFC', max_length=13, verbose_name='RFC')  # Field name made lowercase.
     curp = models.CharField(db_column='CURP', max_length=18, verbose_name='CURP')  # Field name made lowercase.
-    generoid = models.ForeignKey(Generocliente, models.DO_NOTHING, db_column='generoID', verbose_name='Genero')  # Field name made lowercase.
+    generoid = models.ForeignKey(Generocliente, on_delete=models.PROTECT, db_column='generoID', verbose_name='Genero')  # Field name made lowercase.
     celular = models.CharField(max_length=10, verbose_name='Celular')
     telefono = models.CharField(max_length=10, verbose_name='Telefono')
     correo = models.CharField(max_length=50, verbose_name='Correo')

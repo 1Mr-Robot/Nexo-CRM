@@ -8,8 +8,8 @@
 from django.db import models
 
 class Detalleagas(models.Model):
-    agenteid = models.ForeignKey('agentes.Agente', models.DO_NOTHING, db_column='agenteID', verbose_name='Agente')
-    aseguradoraid = models.ForeignKey('aseguradoras.Aseguradora', models.DO_NOTHING, db_column='aseguradoraID', verbose_name='Aseguradora')
+    agenteid = models.ForeignKey('agentes.Agente', on_delete=models.PROTECT, db_column='agenteID', verbose_name='Agente')
+    aseguradoraid = models.ForeignKey('aseguradoras.Aseguradora', on_delete=models.PROTECT, db_column='aseguradoraID', verbose_name='Aseguradora')
 
     class Meta:
         managed = False
@@ -22,8 +22,8 @@ class Detalleagas(models.Model):
         return f'{self.agenteid} - {self.aseguradoraid}'
 
 class Detalleastp(models.Model):
-    aseguradoraid = models.ForeignKey('aseguradoras.Aseguradora', models.DO_NOTHING, db_column='aseguradoraID', verbose_name='Aseguradora')
-    tipopolizaid = models.ForeignKey('polizas.Tipopoliza', models.DO_NOTHING, db_column='tipoPolizaID', verbose_name='Tipo de póliza')
+    aseguradoraid = models.ForeignKey('aseguradoras.Aseguradora', on_delete=models.PROTECT, db_column='aseguradoraID', verbose_name='Aseguradora')
+    tipopolizaid = models.ForeignKey('polizas.Tipopoliza', on_delete=models.PROTECT, db_column='tipoPolizaID', verbose_name='Tipo de póliza')
     comision = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
