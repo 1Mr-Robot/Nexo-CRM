@@ -23,6 +23,7 @@
                             <th>Agente</th>
                             <th>Cliente</th>
                             <th>Tipo de Póliza</th>
+                            <th>Fecha de vencimiento</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -34,6 +35,7 @@
                             <td>{{ poliza.agenteid }}</td>
                             <td>{{ poliza.clienteid }}</td>
                             <td>{{ poliza.tipopolizaid }}</td>
+                            <td>{{ poliza.fechafin }}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{% url 'poliza_ver' poliza.id %}" class="btn btn-info btn-sm">

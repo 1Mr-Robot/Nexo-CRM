@@ -3,17 +3,21 @@ from django.db.models import Q
 from .models import Poliza
 from .forms import PolizaForm
 from django.contrib.auth.decorators import login_required
+from datetime import date
 
 @login_required
 def polizas(request):
-    query = request.GET.get('q')
+    hoy = date.today()  # Fecha actual
+
+    # Base queryset filtrando por fecha fin >= hoy
     polizas = Poliza.objects.select_related(
         'clienteid', 'agenteid', 'aseguradoraid', 'tipopolizaid', 'formapagoid', 'metodopagoid'
-    )
+    ).filter(fechafin__gte=hoy)
 
+    query = request.GET.get('q')
     if query:
-        terms = query.split()  # ["Juan", "Pérez"]
-        q_objects = Q()  # Contenedor de OR
+        terms = query.split()
+        q_objects = Q()
         for term in terms:
             q_objects |= Q(clienteid__nombre__icontains=term)
             q_objects |= Q(clienteid__appaterno__icontains=term)
@@ -25,17 +29,30 @@ def polizas(request):
             q_objects |= Q(tipopolizaid__nombre__icontains=term)
             q_objects |= Q(formapagoid__forma__icontains=term)
             q_objects |= Q(metodopagoid__metodo__icontains=term)
+
         polizas = polizas.filter(q_objects).order_by(
-            'aseguradoraid__nombre', 'agenteid__nombre', 'agenteid__apellidopaterno',
-            'agenteid__apellidomaterno', 'clienteid__nombre', 'clienteid__appaterno', 'clienteid__apmaterno'
+            'fechafin',
+            'aseguradoraid__nombre',
+            'agenteid__nombre',
+            'agenteid__apellidopaterno',
+            'agenteid__apellidomaterno',
+            'clienteid__nombre',
+            'clienteid__appaterno',
+            'clienteid__apmaterno'
         )
     else:
-        polizas = polizas.all().order_by(
-            'aseguradoraid__nombre', 'agenteid__nombre', 'agenteid__apellidopaterno',
-            'agenteid__apellidomaterno', 'clienteid__nombre', 'clienteid__appaterno', 'clienteid__apmaterno'
+        polizas = polizas.order_by(
+            'fechafin',
+            'aseguradoraid__nombre',
+            'agenteid__nombre',
+            'agenteid__apellidopaterno',
+            'agenteid__apellidomaterno',
+            'clienteid__nombre',
+            'clienteid__appaterno',
+            'clienteid__apmaterno'
         )
 
-    return render(request, "polizas/polizas.html", {'polizas':polizas})
+    return render(request, "polizas/polizas.html", {'polizas': polizas})
 
 @login_required
 def poliza_detalle(request, Poliza_id, modo=None):
