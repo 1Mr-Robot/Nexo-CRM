@@ -13,5 +13,8 @@ class PolizaForm(ModelForm):
             'formapagoid',
             'metodopagoid',
             'prima',
-            'fechafin'
+            'fechafin',
         ]
+        widgets = {
+            'fechafin': forms.DateInput(attrs={'type': 'date'}),
+        }
