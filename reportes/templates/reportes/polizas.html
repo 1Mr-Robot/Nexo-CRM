@@ -5,7 +5,13 @@
 {% block title %}Reporte de pólizas{% endblock %}
 
 {% block content %}
-<h1>Reporte de pólizas</h1>
+<div class="position-relative">
+    <h1>Reporte de pólizas</h1>
+    <button id="toggleVencidas" class="btn btn-secondary mb-2 position-absolute top-50 end-0 translate-middle-y">
+        Ocultar pólizas vencidas
+    </button>
+</div>
+
 <div class="card shadow">
     <table id="tabla_reporte_polizas" class="table">
         <thead>
@@ -40,4 +46,6 @@
         </tbody>
     </table>
 </div>
+
+<script src="{% static 'reportes/js/reportes.js' %}"></script>
 {% endblock %}
