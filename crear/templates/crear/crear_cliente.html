@@ -38,6 +38,7 @@
             </div>
             
             {% if clientes %}
+                <div class="table-responsive">
                 <table class="table table-hover mt-3">
                     <thead>
                         <tr>
@@ -54,18 +55,19 @@
                     <tbody id="contenido">
                         {% for cliente in clientes %}
                             <tr>
-                                <th scope="row">{{cliente.id}}</th>
-                                <td>{{cliente.nombre}}</td>
-                                <td>{{cliente.appaterno}}</td>
-                                <td>{{cliente.apmaterno}}</td>
-                                <td>{{cliente.celular}}</td>
-                                <td>{{cliente.telefono}}</td>
-                                <td>{{cliente.correo}}</td>
+                                <th scope="row" data-label="Id">{{cliente.id}}</th>
+                                <td data-label="Nombre">{{cliente.nombre}}</td>
+                                <td data-label="Apellido Paterno">{{cliente.appaterno}}</td>
+                                <td data-label="Apellido Materno">{{cliente.apmaterno}}</td>
+                                <td data-label="Celular">{{cliente.celular}}</td>
+                                <td data-label="Telefono">{{cliente.telefono}}</td>
+                                <td data-label="Correo">{{cliente.correo}}</td>
                                 <td><a href="{% url 'crear_agente' cliente.id %}" type="button" class="btn btn-seleccionar">Seleccionar</a></td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+                </div>
             {% else %}
                 <p class="text-danger">No se encontraron resultados</p>
             {% endif %}

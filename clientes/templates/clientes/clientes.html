@@ -30,19 +30,19 @@
                     <tbody>
                         {% for cliente in clientes %}
                         <tr>
-                            <td><strong>{{ cliente.id }}</strong></td>
-                            <td>{{ cliente.nombre }}</td>
-                            <td>{{ cliente.appaterno }}</td>
-                            <td>{{ cliente.apmaterno }}</td>
-                            <td>{{ cliente.celular }}</td>
-                            <td>{{ cliente.correo }}</td>
+                            <td data-label="ID"><strong>{{ cliente.id }}</strong></td>
+                            <td data-label="Nombre">{{ cliente.nombre }}</td>
+                            <td data-label="Apellido Paterno">{{ cliente.appaterno }}</td>
+                            <td data-label="Apellido Materno">{{ cliente.apmaterno }}</td>
+                            <td data-label="Celular">{{ cliente.celular }}</td>
+                            <td data-label="Correo">{{ cliente.correo }}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{% url 'cliente_ver' cliente.id %}" class="btn btn-info btn-sm">
-                                        <i class="bi bi-info-circle"></i> Info
+                                        <i class="bi bi-info-circle"></i> <span>Info</span>
                                     </a>
                                     <a href="{% url 'cliente_editar' cliente.id %}" class="btn btn-warning btn-sm">
-                                        <i class="bi bi-pencil"></i> Editar
+                                        <i class="bi bi-pencil"></i> <span>Editar</span>
                                     </a>
                                 </div>
                             </td>

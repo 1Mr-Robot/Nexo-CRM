@@ -133,3 +133,48 @@ table tr td:last-child,
 #polizaId:hover {
     background-color: #e9ecef;
 }
+
+/* ==========================================
+        Responsive Styles
+========================================== */
+
+/* Grid de datos del cliente en crear */
+@media (max-width: 992px) {
+    #contenedorDatos {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 576px) {
+    #contenedorDatos {
+        grid-template-columns: 1fr !important;
+    }
+    
+    #contenedorDatos > div {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    #contenedorDatos > div:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+    
+    .contenedor-imagenes {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    h1 {
+        font-size: 22px !important;
+    }
+    
+    h2.card-title {
+        font-size: 18px !important;
+    }
+    
+    .btn-seleccionar {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
