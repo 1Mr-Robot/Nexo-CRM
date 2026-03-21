@@ -2,13 +2,10 @@ from django.shortcuts import render
 from django.db.models import Q
 from polizas.models import Poliza
 from core.models import Detalleagas, Detalleastp
-from django.contrib.auth.decorators import login_required
 
-@login_required
 def menu(request):
     return render(request, "reportes/menu.html")
 
-@login_required
 def reporte_polizas(request):
     query = request.GET.get('q')
     polizas = Poliza.objects.select_related(
@@ -38,7 +35,6 @@ def reporte_polizas(request):
 
     return render(request, "reportes/polizas.html", {'polizas': polizas})
 
-@login_required
 def reporte_AgAs(request):
     query = request.GET.get('q')
     detalles = Detalleagas.objects.select_related(
@@ -74,7 +70,6 @@ def reporte_AgAs(request):
 
     return render(request, "reportes/AgAs.html", {'detalles': detalles})
 
-@login_required
 def reporte_AsTP(request):
     query = request.GET.get('q')
     detalles = Detalleastp.objects.select_related(

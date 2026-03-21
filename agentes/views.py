@@ -1,9 +1,7 @@
 from django.shortcuts import render
 from .models import Agente
-from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
-@login_required
 def agentes(request):
     query = request.GET.get('q')
     agentes = Agente.objects.all()

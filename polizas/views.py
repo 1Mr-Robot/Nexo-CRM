@@ -2,9 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from .models import Poliza
 from .forms import PolizaForm
-from django.contrib.auth.decorators import login_required
 
-@login_required
 def polizas(request):
     query = request.GET.get('q')
     polizas = Poliza.objects.select_related(
@@ -37,7 +35,6 @@ def polizas(request):
 
     return render(request, "polizas/polizas.html", {'polizas':polizas})
 
-@login_required
 def poliza_detalle(request, Poliza_id, modo=None):
     poliza = get_object_or_404(Poliza, id=Poliza_id)
 

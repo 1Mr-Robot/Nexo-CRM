@@ -1,10 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
 from .models import Cliente
 from .forms import ClienteForm
 from django.db.models import Q
 
-@login_required
 def clientes(request):
     query = request.GET.get('q')
     clientes = Cliente.objects.all()
@@ -25,7 +23,6 @@ def clientes(request):
 
     return render(request, "clientes/clientes.html", {'clientes': clientes})
 
-@login_required
 def cliente_detalle(request, Cliente_id, modo=None):
     cliente = get_object_or_404(Cliente, id=Cliente_id)
 
