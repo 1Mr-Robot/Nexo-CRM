@@ -1,6 +1,8 @@
 venv/
 .vscode/
 
+media/
+
 agentes/__pycache__/
 agentes/migrations/__pycache__/
 
