@@ -35,19 +35,19 @@
                     <tbody id="tablaPolizas">
                         {% for poliza in polizas %}
                         <tr>
-                            <td><strong>{{ poliza.id }}</strong></td>
-                            <td>{{ poliza.aseguradoraid }}</td>
-                            <td>{{ poliza.agenteid }}</td>
-                            <td>{{ poliza.clienteid }}</td>
-                            <td>{{ poliza.tipopolizaid }}</td>
-                            <td>{{ poliza.fechafin }}</td>
+                            <td data-label="Número de Póliza"><strong>{{ poliza.id }}</strong></td>
+                            <td data-label="Aseguradora">{{ poliza.aseguradoraid }}</td>
+                            <td data-label="Agente">{{ poliza.agenteid }}</td>
+                            <td data-label="Cliente">{{ poliza.clienteid }}</td>
+                            <td data-label="Tipo de Póliza">{{ poliza.tipopolizaid }}</td>
+                            <td data-label="Fecha de vencimiento">{{ poliza.fechafin }}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{% url 'poliza_ver' poliza.id %}" class="btn btn-info btn-sm">
-                                        <i class="bi bi-info-circle"></i> Info
+                                        <i class="bi bi-info-circle"></i> <span>Info</span>
                                     </a>
                                     <a href="{% url 'poliza_editar' poliza.id %}" class="btn btn-warning btn-sm">
-                                        <i class="bi bi-pencil"></i> Editar
+                                        <i class="bi bi-pencil"></i> <span>Editar</span>
                                     </a>
                                 </div>
                             </td>

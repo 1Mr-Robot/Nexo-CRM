@@ -78,9 +78,9 @@
             <tbody id="contenido">
                 {% for tipoPoliza in tipoPolizas %}
                     <tr>
-                        <th>{{ tipoPoliza.nombre }}</th>
-                        <td>{{ tipoPoliza.descripcion }}</td>
-                        <td><img src="{{tipoPoliza.imagen.url}}" alt=""></td>
+                        <th data-label="Tipo de póliza">{{ tipoPoliza.nombre }}</th>
+                        <td data-label="Descripción">{{ tipoPoliza.descripcion }}</td>
+                        <td data-label="Imagen"><img src="{{tipoPoliza.imagen.url}}" alt=""></td>
                         <td><a href="{% url 'crear_pago' cliente.id agente.id aseguradora.id tipoPoliza.id %}" type="button" class="btn btn-seleccionar">Seleccionar</a></td>
                     </tr>    
                 {% endfor %}

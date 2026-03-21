@@ -26,13 +26,13 @@
         <tbody id="contenido">
             {% for detalle in detalles %}
             <tr>
-                <th scope="row" class="table-active">{{ detalle.agenteid.id }}</th>
-                <td>{{ detalle.agenteid.nombre }}</td>
-                <td>{{ detalle.agenteid.apellidopaterno }}</td>
-                <td>{{ detalle.agenteid.apellidomaterno }}</td>
-                <td class="table-active">{{ detalle.aseguradoraid.id }}</td>
-                <td>{{ detalle.aseguradoraid.nombre }}</td>
-                <td><img src="{{ detalle.aseguradoraid.imagen.url }}" alt="{{ detalle.aseguradoraid.nombre }}"></td>
+                <th scope="row" class="table-active" data-label="ID Agente">{{ detalle.agenteid.id }}</th>
+                <td data-label="Nombre">{{ detalle.agenteid.nombre }}</td>
+                <td data-label="Apellido paterno">{{ detalle.agenteid.apellidopaterno }}</td>
+                <td data-label="Apellido materno">{{ detalle.agenteid.apellidomaterno }}</td>
+                <td class="table-active" data-label="ID Aseguradora">{{ detalle.aseguradoraid.id }}</td>
+                <td data-label="Aseguradora">{{ detalle.aseguradoraid.nombre }}</td>
+                <td data-label="Logo"><img src="{{ detalle.aseguradoraid.imagen.url }}" alt="{{ detalle.aseguradoraid.nombre }}"></td>
             </tr>
             {% endfor %}
         </tbody>

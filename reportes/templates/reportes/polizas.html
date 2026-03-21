@@ -31,16 +31,16 @@
         <tbody id="contenido">
             {% for poliza in polizas %}
                 <tr>
-                    <th scope="row">{{poliza.id}}</th>
-                    <td>{{poliza.aseguradoraid}}</td>
-                    <td>{{poliza.agenteid}}</td>
-                    <td>{{poliza.clienteid}}</td>
-                    <td>{{poliza.tipopolizaid}}</td>
-                    <td>{{poliza.formapagoid}}</td>
-                    <td>{{poliza.metodopagoid}}</td>
-                    <td>{{poliza.prima}}</td>
-                    <td>{{poliza.fechainicio}}</td>
-                    <td>{{poliza.fechafin}}</td>
+                    <th scope="row" data-label="Número de póliza">{{poliza.id}}</th>
+                    <td data-label="Aseguradora">{{poliza.aseguradoraid}}</td>
+                    <td data-label="Agente">{{poliza.agenteid}}</td>
+                    <td data-label="Cliente">{{poliza.clienteid}}</td>
+                    <td data-label="Tipo de póliza">{{poliza.tipopolizaid}}</td>
+                    <td data-label="Forma de pago">{{poliza.formapagoid}}</td>
+                    <td data-label="Método de pago">{{poliza.metodopagoid}}</td>
+                    <td data-label="Prima">{{poliza.prima}}</td>
+                    <td data-label="Fecha de inicio">{{poliza.fechainicio}}</td>
+                    <td data-label="Fecha de fin">{{poliza.fechafin}}</td>
                 </tr>    
             {% endfor %}
         </tbody>

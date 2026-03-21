@@ -27,10 +27,10 @@
                     <tbody>
                         {% for agente in agentes %}
                         <tr>
-                            <td><strong>{{ agente.id }}</strong></td>
-                            <td>{{ agente.nombre }}</td>
-                            <td>{{ agente.apellidopaterno }}</td>
-                            <td>{{ agente.apellidomaterno }}</td>
+                            <td data-label="ID"><strong>{{ agente.id }}</strong></td>
+                            <td data-label="Nombre">{{ agente.nombre }}</td>
+                            <td data-label="Apellido Paterno">{{ agente.apellidopaterno }}</td>
+                            <td data-label="Apellido Materno">{{ agente.apellidomaterno }}</td>
                         </tr>
                         {% empty %}
                         <tr>

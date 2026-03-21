@@ -6,7 +6,7 @@ nav {
     display: flex;
     flex-direction: column;
     position: fixed;
-    height: 100vh;
+    height: 100dvh;
     overflow-y: auto;
     z-index: 1000;
     box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);

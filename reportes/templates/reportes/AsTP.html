@@ -27,14 +27,14 @@
         <tbody id="contenido">
             {% for detalle in detalles %}
             <tr>
-                <td class="table-active">{{ detalle.aseguradoraid.id }}</td>
-                <td>{{ detalle.aseguradoraid.nombre }}</td>
-                <td><img src="{{ detalle.aseguradoraid.imagen.url }}" alt="{{ detalle.aseguradoraid.nombre }}"></td>
-                <th scope="row" class="table-active">{{ detalle.tipopolizaid.id }}</th>
-                <td>{{ detalle.tipopolizaid.nombre }}</td>
-                <td>{{ detalle.tipopolizaid.descripcion }}</td>
-                <td><img src="{{ detalle.tipopolizaid.imagen.url }}" alt="{{ detalle.tipopolizaid.tipo }}"></td>
-                <th scope="row" class="table-active">{{ detalle.comision }}%</th>
+                <td class="table-active" data-label="ID Aseguradora">{{ detalle.aseguradoraid.id }}</td>
+                <td data-label="Aseguradora">{{ detalle.aseguradoraid.nombre }}</td>
+                <td data-label="Logo"><img src="{{ detalle.aseguradoraid.imagen.url }}" alt="{{ detalle.aseguradoraid.nombre }}"></td>
+                <th scope="row" class="table-active" data-label="ID Tipo">{{ detalle.tipopolizaid.id }}</th>
+                <td data-label="Tipo">{{ detalle.tipopolizaid.nombre }}</td>
+                <td data-label="Descripción">{{ detalle.tipopolizaid.descripcion }}</td>
+                <td data-label="Imagen"><img src="{{ detalle.tipopolizaid.imagen.url }}" alt="{{ detalle.tipopolizaid.tipo }}"></td>
+                <th scope="row" class="table-active" data-label="Comisión">{{ detalle.comision }}%</th>
             </tr>
             {% endfor %}
         </tbody>

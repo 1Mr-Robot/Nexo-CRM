@@ -158,7 +158,7 @@ footer,
     vertical-align: middle;
 }
 
-.table tbody td {
+.table tbody td, .table tbody th {
     padding: 14px 12px;
     vertical-align: middle;
     border-bottom: 1px solid #dee2e6;
@@ -267,11 +267,6 @@ footer,
         font-size: 24px;
     }
 
-    /* Layout Adjustments */
-    #principal {
-        margin-left: 80px;
-    }
-
     #superior {
         justify-content: flex-end;
         gap: 15px;
@@ -293,10 +288,7 @@ footer,
         gap: 15px;
     }
 
-    .btn-primary {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
+
 
     .btn-primary img {
         width: 32px;
@@ -349,8 +341,6 @@ footer,
     }
 
     .btn-primary {
-        padding: 6px 12px !important;
-        font-size: 12px !important;
         min-width: auto !important;
         order: 2;
     }
@@ -434,7 +424,7 @@ footer,
 }
 
 .container-form {
-    width: 600px;
+    width: min(600px, 100%);
 }
 
 form:not(.custom-form) {

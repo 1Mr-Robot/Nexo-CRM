@@ -69,9 +69,9 @@
             <tbody id="contenido">
                 {% for aseguradora in aseguradoras %}
                     <tr>
-                        <th scope="row">{{aseguradora.id}}</th>
-                        <td>{{aseguradora.nombre}}</td>
-                        <td class="imagen-centrada"><img src="{{aseguradora.imagen.url}}" alt=""></td>
+                        <th scope="row" data-label="Id">{{aseguradora.id}}</th>
+                        <td data-label="Nombre">{{aseguradora.nombre}}</td>
+                        <td class="imagen-centrada" data-label="Logo"><img src="{{aseguradora.imagen.url}}" alt=""></td>
                         <td><a href="{% url 'crear_tipoPoliza' cliente.id agente.id aseguradora.id %}" type="button" class="btn btn-seleccionar">Seleccionar</a></td>
                     </tr>    
                 {% endfor %}
