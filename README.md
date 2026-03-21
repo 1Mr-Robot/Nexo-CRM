@@ -1,101 +1,156 @@
-# ProyectoBD
-El objetivo de este proyecto es simplificar la gestión y el manejo de las pólizas de seguro.
-Los usuarios podrán visualizar y editar pólizas y usuarios del sistema, así como acceder a una lista completa de los agentes y aseguradoras registradas.
-Además, tendrán acceso a reportes detallados sobre las pólizas, las relaciones entre agentes y aseguradoras, y las aseguradoras con los tipos de póliza que maneja cada una.
-También será posible crear una póliza desde cero, seleccionando o creando un usuario asociado, y gestionando de forma sencilla todos los campos requeridos para su creación.
+# Nexo CRM
 
-## Instalación y ejecución del servidor de prueba
-Si se desea descargar el proyecto para ejecutarlo localmente en un servidor de pruebas es necesario seguir los siguientes pasos:
+Sistema de gestión de relaciones con clientes (CRM) diseñado para simplificar la administración y manejo de pólizas de seguro.
 
-### 1. Instalar Python.
-Es necesario tener instalada la versión 3.13 de Python, si no se tienen instalado Python puede descargarlo [aquí.](https://www.python.org/downloads/) Es importante que verifique que Python y pip estén agregados al path y puedan ejecutarse desde consola.
+## Descripción
 
-### 2. Instalar el proyecto.
-Puede descargarlo como archivo `.zip` o clonarlo con Git Bash en cualquier carpeta:
-``` 
-git clone https://github.com/DarkGhost74/ProyectoBD.git
-```
+Nexo CRM permite a los usuarios visualizar, editar y gestionar pólizas de seguro, usuarios del sistema, agentes y aseguradoras. El sistema ofrece reportes detallados sobre las pólizas, relaciones entre agentes y aseguradoras, y las aseguradoras con los tipos de póliza que manejan. También incluye un asistente para crear pólizas desde cero, seleccionando o creando un usuario asociado.
 
-### 3. Crear un entorno virtual.
-Para crear el entorno virtual puede utilizar cualquier herramienta de Python, como venv. Para crear el entorno, se debe de ejecutar en la carpeta del proyecto el siguiente comando:
-``` 
-python -m venv venv
-```
+## Arquitectura del Proyecto
 
-### 4. Activar el entorno virtual
-Si se está usando PowerShell se debe de ejecutar en la misma carpeta el siguiente comando:
+El proyecto sigue una arquitectura MVT (Model-View-Template) implementada con el framework Django:
+
 ```
- .\venv\Scripts\Activate.ps1
-```
-O bien, si es desde el CMD, el comando:
-```
-venv\Scripts\activate
+Nexo-CRM/
+├── Nexo-CRM/           # Configuración principal del proyecto Django
+│   ├── settings.py     # Configuración de la aplicación
+│   ├── urls.py         # Rutas principales
+│   ├── wsgi.py         # Punto de entrada WSGI
+│   └── asgi.py         # Punto de entrada ASGI
+├── agentes/            # App para gestión de agentes
+├── aseguradoras/        # App para gestión de aseguradoras
+├── clientes/           # App para gestión de clientes
+├── crear/              # App para asistente de creación de pólizas
+├── core/               # App con modelos de relaciones (DetalleAgAs, DetalleAsTP)
+├── polizas/            # App para gestión de pólizas y catálogos
+├── reportes/           # App para generación de reportes
+└── manage.py           # Utilidad de administración Django
 ```
 
-### 5. Instalar requerimientos.
-Para instalar los requerimientos basta con tener el entorno virtual activado y ejecutar:
-```
-pip install -r requirements.txt
+### Aplicaciones Django
+
+| App | Descripción |
+|-----|-------------|
+| `agentes` | Gestión de agentes de seguro |
+| `aseguradoras` | Gestión de aseguradoras |
+| `clientes` | Gestión de clientes con datos personales y dirección |
+| `crear` | Asistente paso a paso para crear pólizas |
+| `core` | Modelos de relaciones entre entidades |
+| `polizas` | Gestión de pólizas, tipos, formas y métodos de pago |
+| `reportes` | Generación de reportes detallados |
+
+## Tecnologías
+
+### Framework y Lenguaje
+- **Django 5.2** - Framework web Python
+- **Python 3.13** - Lenguaje de programación
+
+### Base de Datos
+- **MySQL** - Sistema de gestión de base de datos
+- **Clever Cloud** - Plataforma hosting para la base de datos remota
+
+### Librerías y Dependencias
+- **django-ckeditor 6.7.2** - Editor WYSIWYG para contenido enriquecido
+- **mysqlclient 2.2.7** - Conector MySQL para Python
+- **pillow 11.2.1** - Procesamiento de imágenes
+- **python-dotenv 1.2.2** - Carga de variables de entorno
+- **django-js-asset 3.1.2** - Soporte para JavaScript en formularios Django
+
+### Frontend
+- HTML5 / CSS3
+- JavaScript vanilla
+- Bootstrap
+- Templates Django (Jinja2-like syntax)
+
+## Modelos de Datos
+
+### Entidades Principales
+
+| Modelo | Tabla | Descripción |
+|--------|-------|-------------|
+| `Cliente` | `cliente` | Datos personales, contacto y dirección del cliente |
+| `Agente` | `agente` | Agentes de seguro (nombre, apellidos) |
+| `Aseguradora` | `aseguradora` | Compañías aseguradoras (nombre, logo) |
+| `Poliza` | `poliza` | Pólizas de seguro con todos sus atributos |
+| `TipoPoliza` | `tipoPoliza` | Tipos de póliza disponibles |
+| `FormaPago` | `formaPago` | Formas de pago (mensual, semestral, anual) |
+| `MetodoPago` | `metodoPago` | Métodos de pago (efectivo, transferencia, etc.) |
+| `GeneroCliente` | `generoCliente` | Catálogo de géneros |
+
+### Entidades de Relación
+
+| Modelo | Tabla | Descripción |
+|--------|-------|-------------|
+| `DetalleAgAs` | `detalleAgAs` | Relación muchos a muchos Agente-Aseguradora |
+| `DetalleAsTP` | `detalleAsTP` | Relación Aseguradora-TipoPoliza con comisión |
+
+## Funcionalidades
+
+### Gestión de Pólizas
+- Visualizar lista de pólizas con información completa
+- Editar pólizas existentes
+- Crear nuevas pólizas mediante asistente
+- Búsqueda flexible por múltiples campos
+
+### Gestión de Usuarios
+- Sistema de autenticación integrado
+- Diferentes niveles de acceso (staff vs usuarios regulares)
+- Redirección basada en rol después del login
+
+### Reportes
+- Reporte de pólizas con filtros de búsqueda
+- Reporte de relaciones Agente-Aseguradora
+- Reporte de relaciones Aseguradora-Tipo de Póliza
+
+### Asistente de Creación de Pólizas
+1. Selección o creación de cliente
+2. Selección de agente
+3. Filtrado de aseguradoras relacionadas al agente
+4. Filtrado de tipos de póliza por aseguradora
+5. Configuración de pago con cálculo automático de comisión
+
+## Herramientas Recomendadas
+
+### Desarrollo
+- **Visual Studio Code** - Editor de código recomendado
+- **Git / Git Bash** - Control de versiones
+- **MySQL Workbench** - Cliente visual para base de datos
+
+### Extensiones VS Code
+- Python (Microsoft)
+- Django (Baptiste Darthen)
+- Djaneiro (Vivian")
+- Pylint con pylint_django
+
+## Configuración del Entorno
+
+### Variables de Entorno (.env)
+
+El proyecto utiliza variables de entorno para configuración sensible:
+
+```env
+SECRET_KEY=tu_clave_secreta
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+DB_NAME=nombre_base_datos
+DB_USER=usuario
+DB_PASSWORD=contraseña
+DB_HOST=host_mysql
+DB_PORT=3306
 ```
 
-### 6. Ejecutar el servidor de pruebas.
-Para correr el servidor local se debe de ejecutar en el entorno virtual el comando:
-```
-python manage.py runserver
+### Base de datos pública
+
+Se ha cerado una base de datos pública alojada en Clever Cloud para que cualquiera pueda experimentar con ella. Para usarla solo hay que configurar el .env:
+
+```env
+DB_NAME=blbobicm5ybh67kjinxc
+DB_USER=uxxuzbyn4sknuup3
+DB_PASSWORD=HWnbIzeSH3zcsx97Bu3M
+DB_HOST=blbobicm5ybh67kjinxc-mysql.services.clever-cloud.com
+DB_PORT=3306
 ```
 
-### 7. Crear un super usuario
-El acceso al proyecto está limitado a usuarios registrados.
-Para crear un usuario con privilegios de administrador, ejecute:
-```
-python manage.py createsuperuser
-```
-Siga las instrucciones y, una vez creado, podrá iniciar sesión con ese usuario.
+## Contribuir
 
-### 8. Editar el código del proyecto.
-Si se desea modificar el código se debe se asegurar que sea con el intérprete de Python del entorno virtual. En VS Code por ejemplo, puede hacerse presionando `F1`, seleccionar interprete de Python, y seleccionar el intérprete local. Si se va a trabajar en VS Code se debe de asegurar tener instaladas las extensiones de Python de Microsoft, Django y Djaneiro.
-
-Además, configure Pylint para Django. Vaya a la ruta `File > Preferences > Settings`, en el filtro poner `pylint` y en los `Args` agregar:
-```
-"pylint.args": ["--load-plugins", "pylint_django"]
-```
-
-## Base de datos
-El proyecto se conecta a una base de datos remota de pruebas alojada en Clever Cloud. Las credenciales de acceso se encuentran en la línea 83 de `ProyectoBD/settings.py`.
-Si se desea conectar a la BD mediante terminal puede ejecutar el comando:
-```
-mysql -h blbobicm5ybh67kjinxc-mysql.services.clever-cloud.com -P 3306 -u uxxuzbyn4sknuup3 -p blbobicm5ybh67kjinxc
-```
-y escribir la contraseña:
-```
-HWnbIzeSH3zcsx97Bu3M
-```
-Teniendo acceso desde terminal se puede verificar más a detalle las tablas de esta. Únicamente las siguientes tablas cuentas con `managed = False` en sus respectivos modelos:
-| Tablas |
-|--------------|
-| agente |
-| aseguradora |
-| cliente |
-| detalleAgAs |
-| detalleAsTP |
-| formaPago |
-| generoCliente |
-| metodoPago |
-| poliza |
-| tipoPoliza  |
-
-El que los modelos de dichas tablas tengan `managed = False` significa que fueron agregadas manualmente a la BD y únicamente el desarrollador tiene el poder de cambiarlas. Django no tiene el poder de modificarlas o crearlas al ejecutar `python manage.py makemigrations`, para eso se tendría que cambiar el valor a `managed = True`.
-
-### Crear copia de la BD
-Si se desea crear una copia local de la BD o alojada en otro lado se debe de cambiar el valor `managed = False` a `managed = True` en todos los modelos de las respectivas tablas. Luego se debe de ir a la línea 83 de `ProyectoBD/settings.py` y cambiar las credenciales a las de la nueva BD. Después se debe ejecutar:
-```
-python manage.py makemigrations
-```
-y luego:
-```
-python manage.py migrate
-```
-Esto hace que Django pueda tener control sobre todas las tablas y crearlas desde cero.
-
-### Crear copia sin `managed = True`
-Si no se desea que Django tenga control sobre estas tablas solamente se deben de seguir todos los pasos excepto cambiar `managed`, y crear las tablas correspondientes desde cero. Para esto se puede apoyar ejecutando `describe tabla;` con cada una de las tablas conectado mediante terminal a la BD remota.
+Para instrucciones detalladas de instalación y configuración, consulta [CONTRIBUTING.md](CONTRIBUTING.md).
