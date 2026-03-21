@@ -1,27 +1,15 @@
+#Entorno virtual
 venv/
-.vscode/
 
+#Base de datos
+db.sqlite3
+.env
+
+#media
 media/
 
-agentes/__pycache__/
-agentes/migrations/__pycache__/
+#caché
+__pycache__/
 
-aseguradoras/__pycache__/
-aseguradoras/migrations/__pycache__/
-
-clientes/__pycache__/
-clientes/migrations/__pycache__/
-
-core/__pycache__/
-core/migrations/__pycache__/
-
-crear/__pycache__/
-crear/migrations/__pycache__/
-
-polizas/__pycache__/
-polizas/migrations/__pycache__/
-
-reportes/__pycache__/
-reportes/migrations/__pycache__/
-
-ProyectoBD/__pycache__/
+#VS code
+.vscode/
