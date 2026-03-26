@@ -301,3 +301,93 @@ prima_final = prima_base * (1 + comision / 100)
 ### Búsqueda Flexible
 
 El sistema implementa búsqueda por múltiples términos separados por espacios, permitiendo buscar por nombre, apellidos o ID en cualquier combinación.
+
+## Dockerización
+
+El proyecto incluye configuración completa para ejecutarse en contenedores Docker, ideal para producción o desarrollo estandarizado.
+
+### Servicios Incluidos
+
+| Servicio | Imagen | Puerto | Descripción |
+|----------|--------|--------|-------------|
+| `db` | MySQL 8 | 3307 | Base de datos MySQL |
+| `web` | Django + Gunicorn | 8000 (interno) | Aplicación Python |
+| `nginx` | Nginx Alpine | 8001 | Servidor web y proxy inverso |
+
+### Requisitos Previos
+
+- Docker
+- Docker Compose
+
+### Configuración
+
+1. Copia el archivo `.env.example` a `.env`:
+```bash
+cp .env.example .env
+```
+
+2. Modifica las variables de entorno en `.env` según sea necesario:
+```env
+# Django settings
+DEBUG=False
+SECRET_KEY=tu-clave-secreta-aqui
+ALLOWED_HOSTS=localhost,127.0.0.1
+CSRF_TRUSTED_ORIGINS=http://localhost:8001
+HTTPS=False
+
+# Superuser (creado automáticamente)
+SUPERUSER_USERNAME=admin
+SUPERUSER_EMAIL=admin@example.com
+SUPERUSER_PASSWORD=admin123
+
+# Base de datos MySQL (valores por defecto en docker-compose)
+MYSQL_DATABASE=nexus
+MYSQL_USER=user
+MYSQL_PASSWORD=super_secure_password
+MYSQL_ROOT_PASSWORD=very_strong_root_password
+
+# Configuración Django para conectar al contenedor MySQL
+DB_NAME=nexus
+DB_USER=user
+DB_PASSWORD=super_secure_password
+DB_HOST=db
+DB_PORT=3306
+```
+
+**Nota:** Si cambias los valores de la base de datos en el `.env`, debes eliminar los contenedores y volúmenes existentes para que se apliquen los cambios:
+```bash
+docker-compose down -v
+docker-compose up --build
+```
+
+### Ejecutar el Proyecto
+
+```bash
+docker-compose up --build
+```
+
+La aplicación estará disponible en: `http://localhost:8001`
+
+### Comandos Útiles
+
+| Comando | Descripción |
+|---------|-------------|
+| `docker-compose up --build` | Construir y ejecutar contenedores |
+| `docker-compose down` | Detener contenedores |
+| `docker-compose down -v` | Detener y eliminar volúmenes |
+| `docker-compose logs -f web` | Ver logs del contenedor web |
+| `docker-compose exec web python manage.py shell` | Abrir shell de Django |
+
+### Estructura de Volúmenes
+
+- `mysql_data`: Persistencia de la base de datos
+- `static_volume`: Archivos estáticos de Django
+- `media_volume`: Archivos subidos por usuarios
+
+### Actualización en Producción
+
+Si realizas cambios en el código:
+```bash
+docker-compose down
+docker-compose up --build --force-recreate
+```
