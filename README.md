@@ -2,6 +2,10 @@
 
 Sistema de gestión de relaciones con clientes (CRM) diseñado para simplificar la administración y manejo de pólizas de seguro.
 
+<p align="left">
+    <img src="https://uziel.app/media/projects/nexo-crm/1.webp" alt="hero"  />&nbsp;
+</p>
+
 ## Descripción
 
 Nexo CRM permite a los usuarios visualizar, editar y gestionar pólizas de seguro, usuarios del sistema, agentes y aseguradoras. El sistema ofrece reportes detallados sobre las pólizas, relaciones entre agentes y aseguradoras, y las aseguradoras con los tipos de póliza que manejan. También incluye un asistente para crear pólizas desde cero, seleccionando o creando un usuario asociado.
