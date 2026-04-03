@@ -2,7 +2,7 @@
 
 Sistema de gestión de relaciones con clientes (CRM) diseñado para simplificar la administración y manejo de pólizas de seguro.
 
-<p align="left">
+<p align="center">
     <img src="https://uziel.app/media/projects/nexo-crm/1.webp" alt="hero"  />&nbsp;
 </p>
 
