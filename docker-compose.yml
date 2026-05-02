@@ -1,6 +1,7 @@
 services:
   db:
     image: mysql:8
+    container_name: nexo-crm-db
     restart: always
     env_file:
       - .env
@@ -19,6 +20,8 @@ services:
 
   web:
     build: .
+    container_name: nexo-crm-web
+    restart: always
     expose:
       - "8000"
     volumes:
@@ -33,6 +36,7 @@ services:
 
   nginx:
     image: nginx:alpine
+    container_name: nexo-crm-nginx
     restart: always
     ports:
       - "8001:80" # Puerto de entrada
