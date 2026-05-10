@@ -22,7 +22,7 @@ Nexo-CRM/
 │   ├── wsgi.py         # Punto de entrada WSGI
 │   └── asgi.py         # Punto de entrada ASGI
 ├── agentes/            # App para gestión de agentes
-├── aseguradoras/        # App para gestión de aseguradoras
+├── aseguradoras/       # App para gestión de aseguradoras
 ├── clientes/           # App para gestión de clientes
 ├── crear/              # App para asistente de creación de pólizas
 ├── core/               # App con modelos de relaciones (DetalleAgAs, DetalleAsTP)
@@ -139,6 +139,7 @@ ALLOWED_HOSTS=localhost,127.0.0.1
 DB_NAME=nombre_base_datos
 DB_USER=usuario
 DB_PASSWORD=contraseña
+DB_ROOT_PASSWORD=root_password
 DB_HOST=host_mysql
 DB_PORT=3306
 ```

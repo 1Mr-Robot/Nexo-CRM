@@ -114,6 +114,9 @@ Crea un archivo `.env` en la raíz del proyecto:
 SECRET_KEY=tu-clave-secreta-aqui
 DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1
+CSRF_TRUSTED_ORIGINS=http://localhost:8000,http://127.0.0.1:8000
+HTTPS=False
+TIME_ZONE=America/Monterrey
 DB_NAME=nexocrm
 DB_USER=tu_usuario
 DB_PASSWORD=tu_contraseña
@@ -332,8 +335,9 @@ cp .env.example .env
 DEBUG=False
 SECRET_KEY=tu-clave-secreta-aqui
 ALLOWED_HOSTS=localhost,127.0.0.1
-CSRF_TRUSTED_ORIGINS=http://localhost:8001
-HTTPS=False
+CSRF_TRUSTED_ORIGINS=http://localhost:8000
+HTTPS=True
+TIME_ZONE=America/Monterrey
 
 # Superuser (creado automáticamente)
 SUPERUSER_USERNAME=admin
@@ -341,17 +345,15 @@ SUPERUSER_EMAIL=admin@example.com
 SUPERUSER_PASSWORD=admin123
 
 # Base de datos MySQL (valores por defecto en docker-compose)
-MYSQL_DATABASE=nexus
-MYSQL_USER=user
-MYSQL_PASSWORD=super_secure_password
-MYSQL_ROOT_PASSWORD=very_strong_root_password
-
-# Configuración Django para conectar al contenedor MySQL
 DB_NAME=nexus
 DB_USER=user
 DB_PASSWORD=super_secure_password
+DB_ROOT_PASSWORD=very_strong_root_password
 DB_HOST=db
 DB_PORT=3306
+
+#Puerto de entrada (nginx)
+PORT=8000
 ```
 
 **Nota:** Si cambias los valores de la base de datos en el `.env`, debes eliminar los contenedores y volúmenes existentes para que se apliquen los cambios:
